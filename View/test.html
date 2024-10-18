@@ -1,0 +1,82 @@
+    <div id="numberContainer"></div>
+    <div><br></div>
+    <div id="starsContainer"></div>
+
+    <script>
+        // Récupérer l'élément conteneur
+        const numberContainer = document.getElementById('numberContainer');
+        const starsContainer = document.getElementById('starsContainer');
+
+        // Créer les chiffres de 1 à 50
+        for (let i = 1; i <= 50; i++) {
+            const numberDiv = document.createElement('div');
+            numberDiv.textContent = i;
+            numberDiv.classList.add('number');
+            numberContainer.appendChild(numberDiv);
+
+            // Ajouter un événement de clic à chaque chiffre
+            numberDiv.addEventListener('click', () => toggleSelectNumbers(numberDiv));
+        }
+
+        for (let i=1; i<=10;i++) {
+            const starDiv = document.createElement('div');
+            starDiv.textContent = i;
+            starDiv.classList.add('star');
+            starsContainer.appendChild(starDiv);
+
+            // Ajouter un événement de clic à chaque chiffre
+            starDiv.addEventListener('click', () => toggleSelectStars(starDiv));
+        }
+
+        let selectedNumbers = [];
+        let selectedStars = [];
+
+        function toggleSelectNumbers(element) {
+            const number = parseInt(element.textContent);
+            // Si le chiffre est déjà sélectionné, le désélectionner
+            if (selectedNumbers.includes(number)) {
+                selectedNumbers = selectedNumbers.filter(n => n !== number);
+                element.classList.remove('selected');
+            } 
+            // Sinon, sélectionner le chiffre s'il y a moins de 5 chiffres sélectionnés
+            else if (selectedNumbers.length < 5) {
+                selectedNumbers.push(number);
+                element.classList.add('selected');
+            } 
+            if (selectedNumbers.length === 5) {
+                selectedNumbersChar = `{${selectedNumbers.join(',')}}`;
+            }
+        }
+
+        function toggleSelectStars(element) {
+            const star = parseInt(element.textContent);
+            // Si le chiffre est déjà sélectionné, le désélectionner
+            if (selectedStars.includes(star)) {
+                selectedStars = selectedStars.filter(n => n !== star);
+                element.classList.remove('selectedStars');
+            } 
+            // Sinon, sélectionner le chiffre s'il y a moins de 5 chiffres sélectionnés
+            else if (selectedStars.length < 2) {
+                selectedStars.push(star);
+                element.classList.add('selectedStars');
+            } 
+            if (selectedStars.length === 2) {
+                selectedStarsChar = `{${selectedStars.join(',')}}`;
+            }
+        }
+
+
+        document.getElementById("creationForm").addEventListener('submit', function(event) {
+            if (selectedNumbers.length != 5 || selectedStars.length != 2) {
+                selectedNumbersField.value = null; // à changer
+                selectedStarsField.value = null;
+            } else {
+                selectedNumbersField.value = selectedNumbersChar;
+                selectedStarsField.value = selectedStarsChar;
+            }
+        })
+
+    </script>
+
+</body>
+</html>

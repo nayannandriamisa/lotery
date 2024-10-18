@@ -10,9 +10,10 @@
         echo '<br>';
     }
 */
-
 ?>
 
-<button type="button"><a href="?controller=player&action=creation">Test</a></button>
+<button type="button"><a href="?controller=player&action=creation_form">Créer un compte</a></button>
+<button type="button"><a href="?controller=lottery&action=lottery_grid">Lancer un tirage</a></button>
+<br>
 
 <?php require "footer.html" ?>

@@ -1,4 +1,30 @@
-a {
+.number, .star{
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    width: 40px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+.selected {
+    background-color: #2294f1;
+    color: white;
+}
+
+.selectedStars{
+    background-color: gold;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+a{
     text-decoration: none;
-    color: black;
+    color:black;
 }

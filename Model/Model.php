@@ -29,9 +29,18 @@ class Model {
         return $req->fetchall();
     }
 
-	public function player_creation($name) {
-		$req = $this->bd->prepare("INSERT INTO players VALUES $name");
+	public function player_creation($name, $numbers, $stars) {
+		$req = $this->bd->prepare("INSERT INTO players (name, numbers, stars) VALUES (:name, :numbers, :stars)"); // INSERT INTO ... VALUES ('...','{x,y,z,a,b}') pour la syntaxe de la requete
+		$req->bindValue(':name', $name);
+		$req->bindValue(':numbers',$numbers);
+		$req->bindValue(':stars',$stars);
 		$req->execute();
 		return (bool) $req->rowCount(); 
+	}
+
+	public function get_players_list() {
+		$req = $this->bd->prepare("SELECT * FROM players");
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
 	}
 }
